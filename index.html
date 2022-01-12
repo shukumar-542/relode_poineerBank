@@ -70,8 +70,9 @@
             })
             const depositeBtn  =  document.getElementById('depositebtn');
             depositeBtn.addEventListener('click',function(){
-                  const depositeAmmount  = document.getElementById('depositeAmmount').value;
-                  const depositeNumber = parseFloat(depositeAmmount);
+                  // const depositeAmmount  = document.getElementById('depositeAmmount').value;
+                  // const depositeNumber = parseFloat(depositeAmmount);
+                  const depositeNumber = getInputNumber('depositeAmmount')
 
 
                   // const currentDeposite = document.getElementById('currentDeposite').innerText;
@@ -85,27 +86,41 @@
                   document.getElementById('depositeAmmount').value ='';
 
 
-                  function updateBalance(id,depositeNumber){
+                 
+            })
+            function updateBalance(id,depositeNumber){
                   const currentBalance = document.getElementById(id).innerText;
                   const currentBalanceNumber  = parseFloat(currentBalance);
                   const totalBalance = currentBalanceNumber + depositeNumber;
                   document.getElementById(id).innerText  = totalBalance;
 
                   }
-            })
+
+
+            function getInputNumber(id){
+                  const ammount = document.getElementById(id).value;
+                  const ammountNumber = parseFloat(ammount);
+                  return ammountNumber;
+
+            }
 
             const withdrawBtn = document.getElementById('withdrawBtn');
             withdrawBtn.addEventListener('click', function(){
-               const withdrawAmmount = document.getElementById('withdrawAmmount').value;
-               const withdrawAmmountNumber = parseFloat(withdrawAmmount);
+               const withdrawNumber = getInputNumber('withdrawAmmount')
+               
+               updateBalance('withodrawBalance',withdrawNumber);
+               updateBalance('currentBalance', -1 * withdrawNumber)
+
+               
+               document.getElementById('withdrawAmmount').value ='';
                
 
-               const withodrawBalance =  document.getElementById('withodrawBalance').innerText;
-               const withdrawBalanceNumber  = parseFloat(withodrawBalance);
-               const totalWithdraw = withdrawAmmountNumber + withdrawBalanceNumber;
-               document.getElementById('withodrawBalance').innerText = totalWithdraw;
+            //    const withodrawBalance =  document.getElementById('withodrawBalance').innerText;
+            //    const withdrawBalanceNumber  = parseFloat(withodrawBalance);
+            //    const totalWithdraw = withdrawAmmountNumber + withdrawBalanceNumber;
+            //    document.getElementById('withodrawBalance').innerText = totalWithdraw;
 
-               document.getElementById('withdrawAmmount').value = '';
+            //    document.getElementById('withdrawAmmount').value = '';
 
             })
 
